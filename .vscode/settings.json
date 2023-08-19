@@ -14,7 +14,4 @@
     "pylint.args": [
         "--disable=W0404,W0612,W0613,W0622,C0103,C0114,C0115,C0116,C0412,C0413,C2401"
     ],
-    "mypy-type-checker.path": [
-        "/home/takahiro/AtCoder/venv/bin/mypy"
-    ],
 }
