@@ -1,31 +1,33 @@
 # LL: GCD(0, a) = a
 
 import sys  # https://docs.python.org/ja/3/library/sys.html
-import functools as ft  # https://docs.python.org/ja/3/library/functools.html
 import math  # https://docs.python.org/ja/3/library/math.html
 
 
-def gcd_on_blackboard(N, A):
+def blackboard(N, A):
     A = [0] + A + [0]
-    left_gcd = [0] * (N + 2)
+    left_gcd, right_gcd = [0] * (N + 2), [0] * (N + 2)
     for i in range(1, N + 1):
         left_gcd[i] = math.gcd(left_gcd[i - 1], A[i])
-
-    right_gcd = [0] * (N + 2)
     for i in reversed(range(1, N + 1)):
-        right_gcd[i] = math.gcd(A[i], right_gcd[i + 1])
+        right_gcd[i] = math.gcd(right_gcd[i + 1], A[i])
 
-    return max(math.gcd(l, r) for l, r in zip(left_gcd[:-2], right_gcd[2:]))
+    max_gcd = 0
+    for i in range(1, N + 1):
+        max_gcd = max(max_gcd, math.gcd(left_gcd[i - 1], right_gcd[i + 1]))
+
+    return max_gcd
 
 
 def resolve():
     N = int(sys.stdin.readline())
     A = [int(e) for e in sys.stdin.readline().split()]
-    print(gcd_on_blackboard(N, A))
+    print(blackboard(N, A))
 
 
 # resolve()
 # exit()
+
 
 import sys
 from io import StringIO
@@ -83,8 +85,31 @@ if __name__ == "__main__":
     unittest.main()
 
 
-def gcd(*A):
-    return ft.reduce(math.gcd, A)
-
-
 # 746130, 1385670, 4849845, 881790, 3233230, 1939938, 570570, 510510
+
+# import sys  # https://docs.python.org/ja/3/library/sys.html
+# import functools as ft  # https://docs.python.org/ja/3/library/functools.html
+# import math  # https://docs.python.org/ja/3/library/math.html
+
+
+# def gcd_on_blackboard(N, A):
+#     A = [0] + A + [0]
+#     left_gcd = [0] * (N + 2)
+#     for i in range(1, N + 1):
+#         left_gcd[i] = math.gcd(left_gcd[i - 1], A[i])
+
+#     right_gcd = [0] * (N + 2)
+#     for i in reversed(range(1, N + 1)):
+#         right_gcd[i] = math.gcd(A[i], right_gcd[i + 1])
+
+#     return max(math.gcd(l, r) for l, r in zip(left_gcd[:-2], right_gcd[2:]))
+
+
+# def resolve():
+#     N = int(sys.stdin.readline())
+#     A = [int(e) for e in sys.stdin.readline().split()]
+#     print(gcd_on_blackboard(N, A))
+
+
+# # resolve()
+# # exit()

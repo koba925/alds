@@ -1,19 +1,17 @@
-import sys
-from math import gcd
+import sys  # https://docs.python.org/ja/3/library/sys.html
+import functools as ft  # https://docs.python.org/ja/3/library/functools.html
+import math  # https://docs.python.org/ja/3/library/math.html
 
-def monsters(N, A):
-    g = A[0]
-    for a in A[1:]:
-        g = gcd(g, a)
-    return g
 
 def resolve():
     N = int(sys.stdin.readline())
     A = [int(e) for e in sys.stdin.readline().split()]
-    print(monsters(N, A))
+    print(math.gcd(A))
+
 
 # resolve()
 # exit()
+
 
 import sys
 from io import StringIO
@@ -51,3 +49,20 @@ class TestClass(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# import sys
+# from math import gcd
+
+# def monsters(N, A):
+#     g = A[0]
+#     for a in A[1:]:
+#         g = gcd(g, a)
+#     return g
+
+# def resolve():
+#     N = int(sys.stdin.readline())
+#     A = [int(e) for e in sys.stdin.readline().split()]
+#     print(monsters(N, A))
+
+# resolve()
+# exit()

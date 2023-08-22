@@ -1,18 +1,21 @@
-import sys
+import sys  # https://docs.python.org/ja/3/library/sys.html
+import functools as ft  # https://docs.python.org/ja/3/library/functools.html
+import math  # https://docs.python.org/ja/3/library/math.html
 
-sys.setrecursionlimit(2000000)
 
-from math import gcd
+def gcd(*A):
+    return ft.reduce(math.gcd, A)
 
-def cubic_cake(A, B, C):
-    g = gcd(gcd(A, B), C)
-    return (A + B + C) // g - 3
 
 def resolve():
     A, B, C = [int(e) for e in sys.stdin.readline().split()]
-    print(cubic_cake(A, B, C))
+    g = gcd(A, B, C)
+    print((A + B + C) // g - 3)
+
 
 # resolve()
+# exit()
+
 
 import sys
 from io import StringIO
@@ -47,3 +50,15 @@ class TestClass(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# from math import gcd
+
+# def cubic_cake(A, B, C):
+#     g = gcd(gcd(A, B), C)
+#     return (A + B + C) // g - 3
+
+# def resolve():
+#     A, B, C = [int(e) for e in sys.stdin.readline().split()]
+#     print(cubic_cake(A, B, C))
+
+# resolve()
