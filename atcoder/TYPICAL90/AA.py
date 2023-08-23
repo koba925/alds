@@ -1,23 +1,19 @@
 import sys
 
-sys.setrecursionlimit(2000000)
-
-def sign_up_requests(N, S):
-    ans = []
-    names = set()
-    for day, name in enumerate(S, start = 1):
-        if name not in names:
-            ans.append(day)
-            names.add(name)
-    return ans
 
 def resolve():
     N = int(sys.stdin.readline())
-    S = [sys.stdin.readline().strip() for _ in range(N)]
-    print(*sign_up_requests(N, S), sep="\n")
+    users = set()
+    for i in range(1, N + 1):
+        S = sys.stdin.readline().strip()
+        if S not in users:
+            print(i)
+            users.add(S)
+
 
 # resolve()
 # exit()
+
 
 import sys
 from io import StringIO
@@ -76,3 +72,24 @@ square869120"""
 
 if __name__ == "__main__":
     unittest.main()
+
+# import sys
+
+# sys.setrecursionlimit(2000000)
+
+# def sign_up_requests(N, S):
+#     ans = []
+#     names = set()
+#     for day, name in enumerate(S, start = 1):
+#         if name not in names:
+#             ans.append(day)
+#             names.add(name)
+#     return ans
+
+# def resolve():
+#     N = int(sys.stdin.readline())
+#     S = [sys.stdin.readline().strip() for _ in range(N)]
+#     print(*sign_up_requests(N, S), sep="\n")
+
+# # resolve()
+# # exit()
