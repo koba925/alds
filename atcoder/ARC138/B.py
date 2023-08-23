@@ -2,11 +2,12 @@ import sys
 
 sys.setrecursionlimit(2000000)
 
+
 def zero_one_TLE(N, A):
     def dfs(X, flip):
         if len(X) == 0:
             return True
-        
+
         result = False
         if flip:
             if X[-1] == 1:
@@ -22,7 +23,9 @@ def zero_one_TLE(N, A):
 
     return dfs(A, False)
 
+
 from collections import deque
+
 
 def zero_one_deque(N, A):
     X = deque(A)
@@ -39,11 +42,13 @@ def zero_one_deque(N, A):
 
     return True
 
+
 def resolve():
     N = int(sys.stdin.readline())
-    A = [int(e) for e in sys.stdin.readline().split()]    
+    A = [int(e) for e in sys.stdin.readline().split()]
     print("Yes" if zero_one_TLE(N, A) else "No")
     # print("Yes" if zero_one_deque(N, A) else "No")
+
 
 # resolve()
 # exit()
