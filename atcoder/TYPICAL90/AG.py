@@ -1,19 +1,22 @@
+# LL: 問題を一字一句読む 「イルミネーション全体に完全に含まれる」
+
 import sys
 
-def divceil(a, x): return int(-(-a // x))
-
-def not_too_bright(H, W):
-    if H == 1 or W == 1:
-        return H * W
-    else:
-        return divceil(H, 2) * divceil(W, 2)
 
 def resolve():
     H, W = [int(e) for e in sys.stdin.readline().split()]
-    print(not_too_bright(H, W))
+    if H == 1:
+        ans = W
+    elif W == 1:
+        ans = H
+    else:
+        ans = ((H + 1) // 2) * ((W + 1) // 2)
+    print(ans)
+
 
 # resolve()
 # exit()
+
 
 import sys
 from io import StringIO
@@ -29,6 +32,21 @@ class TestClass(unittest.TestCase):
         out = sys.stdout.read()[:-1]
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
+
+    def test_1(self):
+        input = """1 1"""
+        output = """1"""
+        self.assertIO(input, output)
+
+    def test_2(self):
+        input = """1 5"""
+        output = """5"""
+        self.assertIO(input, output)
+
+    def test_3(self):
+        input = """4 1"""
+        output = """4"""
+        self.assertIO(input, output)
 
     def test_入力例_1(self):
         input = """2 3"""
@@ -48,3 +66,20 @@ class TestClass(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# import sys
+
+# def divceil(a, x): return int(-(-a // x))
+
+# def not_too_bright(H, W):
+#     if H == 1 or W == 1:
+#         return H * W
+#     else:
+#         return divceil(H, 2) * divceil(W, 2)
+
+# def resolve():
+#     H, W = [int(e) for e in sys.stdin.readline().split()]
+#     print(not_too_bright(H, W))
+
+# # resolve()
+# # exit()
