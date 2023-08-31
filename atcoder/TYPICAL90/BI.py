@@ -1,77 +1,24 @@
 import sys
 
-from collections import deque
+import collections as cl
 
-def resolve_deque():
-    Q = int(sys.stdin.readline())
-    cards = deque()
-    for _ in range(Q):
-        t, x = [int(e) for e in sys.stdin.readline().split()]
-        if t == 1:
-            cards.appendleft(x)
-        elif t == 2:
-            cards.append(x)
-        elif t == 3:
-            print(cards[x - 1])
-
-def resolve_list_TLE():
-    Q = int(sys.stdin.readline())
-    cards = []
-    for _ in range(Q):
-        t, x = [int(e) for e in sys.stdin.readline().split()]
-        if t == 1:
-            cards = [x] + cards
-        elif t == 2:
-            cards = cards + [x]
-        elif t == 3:
-            print(cards[x - 1])
-
-class DequeList:
-    def __init__(self, size):
-        self.size = size
-        self.list = [None] * (size * 2)        
-        self.left = size
-        self.right = size
-    
-    def __getitem__(self, i):
-        return self.list[self.left + i]
-
-    def __repr__(self):
-        return f"DequeList({self.left}, {self.right}, {self.list})"
-
-    def __str__(self):
-        return str(self.list[self.left:self.right])
-
-    def append(self, val):
-        self.list[self.right] = val
-        self.right += 1
-    
-    def pop(self):
-        self.right -= 1
-        return self.list[self.right]
-
-    def appendleft(self, val):
-        self.left -= 1
-        self.list[self.left] = val
-
-    def popleft(self):
-        self.left += 1
-        return self.list[self.left - 1]
 
 def resolve():
     Q = int(sys.stdin.readline())
-    cards = DequeList(Q)
+    q = cl.deque()
     for _ in range(Q):
         t, x = [int(e) for e in sys.stdin.readline().split()]
         if t == 1:
-            cards.appendleft(x)
+            q.appendleft(x)
         elif t == 2:
-            cards.append(x)
-        elif t == 3:
-            print(cards[x - 1])
-    
-resolve()
-exit()
+            q.append(x)
+        else:
+            print(q[x - 1])
+
+
+# resolve()
+# exit()
+
 
 import sys
 from io import StringIO
@@ -128,3 +75,78 @@ class TestClass(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# import sys
+
+# from collections import deque
+
+# def resolve_deque():
+#     Q = int(sys.stdin.readline())
+#     cards = deque()
+#     for _ in range(Q):
+#         t, x = [int(e) for e in sys.stdin.readline().split()]
+#         if t == 1:
+#             cards.appendleft(x)
+#         elif t == 2:
+#             cards.append(x)
+#         elif t == 3:
+#             print(cards[x - 1])
+
+# def resolve_list_TLE():
+#     Q = int(sys.stdin.readline())
+#     cards = []
+#     for _ in range(Q):
+#         t, x = [int(e) for e in sys.stdin.readline().split()]
+#         if t == 1:
+#             cards = [x] + cards
+#         elif t == 2:
+#             cards = cards + [x]
+#         elif t == 3:
+#             print(cards[x - 1])
+
+# class DequeList:
+#     def __init__(self, size):
+#         self.size = size
+#         self.list = [None] * (size * 2)
+#         self.left = size
+#         self.right = size
+
+#     def __getitem__(self, i):
+#         return self.list[self.left + i]
+
+#     def __repr__(self):
+#         return f"DequeList({self.left}, {self.right}, {self.list})"
+
+#     def __str__(self):
+#         return str(self.list[self.left:self.right])
+
+#     def append(self, val):
+#         self.list[self.right] = val
+#         self.right += 1
+
+#     def pop(self):
+#         self.right -= 1
+#         return self.list[self.right]
+
+#     def appendleft(self, val):
+#         self.left -= 1
+#         self.list[self.left] = val
+
+#     def popleft(self):
+#         self.left += 1
+#         return self.list[self.left - 1]
+
+# def resolve():
+#     Q = int(sys.stdin.readline())
+#     cards = DequeList(Q)
+#     for _ in range(Q):
+#         t, x = [int(e) for e in sys.stdin.readline().split()]
+#         if t == 1:
+#             cards.appendleft(x)
+#         elif t == 2:
+#             cards.append(x)
+#         elif t == 3:
+#             print(cards[x - 1])
+
+# resolve()
+# exit()
