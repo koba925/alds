@@ -1,10 +1,13 @@
 import sys
 
-def base_b_to_int(s, b):
+
+def base_b_to_int(s: str, b: int) -> int:
     return int(s, b)
 
-def int_to_base_b(n, b):
-    if n == 0: return "0"
+
+def int_to_base_b(n: int, b: int) -> str:
+    if n == 0:
+        return "0"
     d = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     temp = []
     while n > 0:
@@ -12,19 +15,19 @@ def int_to_base_b(n, b):
         n //= b
     return "".join(reversed(temp))
 
-def base8to9(N, K):
-    N2 = N
-    for _ in range(K):
-        n = base_b_to_int(N, 8)
-        N = int_to_base_b(n, 9).replace("8", "5")
-    return N
 
 def resolve():
-    N, K = sys.stdin.readline().split()
-    print(base8to9(N, int(K)))
+    N, K = [int(e) for e in sys.stdin.readline().split()]
+    for _ in range(K):
+        n8 = base_b_to_int(str(N), 8)
+        s9 = int_to_base_b(n8, 9)
+        N = int(s9.replace("8", "5"))
+    print(N)
+
 
 # resolve()
 # exit()
+
 
 import sys
 from io import StringIO
@@ -59,3 +62,31 @@ class TestClass(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# import sys
+
+# def base_b_to_int(s, b):
+#     return int(s, b)
+
+# def int_to_base_b(n, b):
+#     if n == 0: return "0"
+#     d = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#     temp = []
+#     while n > 0:
+#         temp.append(d[n % b])
+#         n //= b
+#     return "".join(reversed(temp))
+
+# def base8to9(N, K):
+#     N2 = N
+#     for _ in range(K):
+#         n = base_b_to_int(N, 8)
+#         N = int_to_base_b(n, 9).replace("8", "5")
+#     return N
+
+# def resolve():
+#     N, K = sys.stdin.readline().split()
+#     print(base8to9(N, int(K)))
+
+# # resolve()
+# # exit()
