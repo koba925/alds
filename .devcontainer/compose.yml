@@ -1,10 +1,10 @@
 services:
-  pypy3:
-    image: pypy3:1.0
+  alds:
+    image: devcon-alds:1.0
     build: ./pypy3
-    container_name: 'pypy3'
+    container_name: 'devcon_alds'
     stdin_open: true
     tty: true
-    working_dir: /workspace
+    working_dir: /alds
     volumes:
-      - ..:/workspace
+      - ..:/alds

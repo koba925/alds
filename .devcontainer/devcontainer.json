@@ -1,8 +1,8 @@
 {
-	"name": "Pypy3",
+	"name": "alds",
 	"dockerComposeFile": "compose.yml",
-	"service": "pypy3",
-	"workspaceFolder": "/workspace",
+	"service": "alds",
+	"workspaceFolder": "/alds",
 	"customizations": {
 		"vscode": {
 			"extensions": [
