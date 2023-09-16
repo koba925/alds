@@ -1,0 +1,7 @@
+services:
+  pypy3:
+    image: devcontainer/pypy3:1.0
+    build: ./pypy3
+    container_name: 'devcontainer-pypy3-alds'
+    stdin_open: true
+    tty: true

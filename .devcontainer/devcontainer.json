@@ -1,0 +1,16 @@
+{
+	"name": "Pypy3",
+	"dockerComposeFile": "compose.yml",
+	"service": "pypy3",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.black-formatter"
+			]
+		}
+	},
+	"remoteUser": "vscode"
+}
