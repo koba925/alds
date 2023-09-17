@@ -2,9 +2,17 @@
 	"name": "alds",
 	"dockerComposeFile": "compose.yml",
 	"service": "alds",
-	"workspaceFolder": "/alds",
+	"workspaceFolder": "/workspaces/alds",
 	"customizations": {
 		"vscode": {
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash",
+				"python.analysis.typeCheckingMode": "basic",
+				"[python]": {
+					"editor.defaultFormatter": "ms-python.black-formatter",
+					"editor.formatOnSave": true
+				}
+			},
 			"extensions": [
 				"ms-python.python",
 				"ms-python.vscode-pylance",

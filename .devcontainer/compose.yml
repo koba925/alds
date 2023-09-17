@@ -5,6 +5,6 @@ services:
     container_name: 'devcon_alds'
     stdin_open: true
     tty: true
-    working_dir: /alds
+    working_dir: /workspaces/alds
     volumes:
-      - ..:/alds
+      - ..:/workspaces/alds
