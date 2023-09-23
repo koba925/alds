@@ -22,8 +22,8 @@ import itertools as it
 
 def resolve():
     N = int(sys.stdin.readline())
-    A1 = list(it.accumulate([0] + [int(e) for e in sys.stdin.readline().split()]))
-    A2 = list(it.accumulate([0] + [int(e) for e in sys.stdin.readline().split()]))
+    A1 = list(it.accumulate([int(e) for e in sys.stdin.readline().split()], initial=0))
+    A2 = list(it.accumulate([int(e) for e in sys.stdin.readline().split()], initial=0))
     print(max(A1[i] + A2[N] - A2[i - 1] for i in range(1, N + 1)))
 
 
