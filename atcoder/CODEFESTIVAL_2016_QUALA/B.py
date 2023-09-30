@@ -1,11 +1,15 @@
-# B - Painting Balls with AtCoDeer
+import sys
 
 
 def resolve():
-    N, K = [int(e) for e in input().split()]
+    N = int(sys.stdin.readline())
+    A = [int(e) for e in sys.stdin.readline().split()]
 
-    print(K * (K - 1) ** (N - 1))
+    print(len([a for i, a in enumerate(A) if A[a - 1] == i + 1]) // 2)
 
+
+# resolve()
+# exit()
 
 import sys
 from io import StringIO
@@ -23,18 +27,21 @@ class TestClass(unittest.TestCase):
         self.assertEqual(out, output)
 
     def test_入力例_1(self):
-        input = """2 2"""
+        input = """4
+2 1 4 3"""
         output = """2"""
         self.assertIO(input, output)
 
     def test_入力例_2(self):
-        input = """1 10"""
-        output = """10"""
+        input = """3
+2 3 1"""
+        output = """0"""
         self.assertIO(input, output)
 
     def test_入力例_3(self):
-        input = """10 8"""
-        output = """322828856"""
+        input = """5
+5 5 5 5 1"""
+        output = """1"""
         self.assertIO(input, output)
 
 
