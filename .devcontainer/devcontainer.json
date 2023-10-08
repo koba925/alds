@@ -10,7 +10,7 @@
 				"python.analysis.typeCheckingMode": "basic",
 				"[python]": {
 					"editor.defaultFormatter": "ms-python.black-formatter",
-					"editor.formatOnSave": true
+					"editor.formatOnSave": false
 				}
 			},
 			"extensions": [
