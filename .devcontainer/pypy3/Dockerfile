@@ -1,4 +1,4 @@
-FROM pypy:3.10-7.3.12-slim-bookworm
+FROM pypy:3.10-slim
 
 ARG USERNAME=vscode
 ARG GROUPNAME=${USERNAME}
