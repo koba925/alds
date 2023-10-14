@@ -1,8 +1,6 @@
 services:
   alds:
-    image: devcon-alds:1.0
     build: ./pypy3
-    container_name: 'devcon_alds'
     stdin_open: true
     tty: true
     working_dir: /workspaces/alds
