@@ -1,19 +1,11 @@
 def resolve():
-    import sys
-    sys.setrecursionlimit(2000000)
-    import math
-    import collections as cl
-    import functools as ft
     import itertools as it
-    import operator as op
-    from bisect import bisect_left, bisect_right
-    from heapq import heappush, heappop
 
-    def fastest(digit):
+    def fastest(digit, order):
         done = [False] * 3
-        for i, R in enumerate(it.chain(S, S, S)):
-            for j in range(3):
-                if R[j] == digit:
+        for i, R in enumerate(S):
+            for j in order:
+                if R[j] == digit and not done[j]:
                     done[j] = True
                     break            
             if all(done): return i
@@ -21,10 +13,12 @@ def resolve():
 
     M = int(input())
     S = list(zip(input(), input(), input()))
-    
+    S += S + S
+
     ans = float("inf")
-    for d in "0123456789":
-        ans = min(ans, fastest(d))
+    for order in it.permutations(range(3)):
+        for d in "0123456789":
+            ans = min(ans, fastest(d, order))
     print(-1 if ans == float("inf") else ans)
 
 # resolve()
@@ -45,6 +39,14 @@ class TestClass(unittest.TestCase):
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
 
+    def test_(self):
+        input = """3
+111
+110
+100"""
+        output = """2"""
+        self.assertIO(input, output)
+    
     def test_入力例_1(self):
         input = """10
 1937458062
