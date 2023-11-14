@@ -15,6 +15,12 @@ class DoublyLinkedList:
         self.end.prev = self.end  # tail
         self.cursor = self.end
 
+    def head(self):
+        return self.end.next
+    
+    def tail(self):
+        return self.end.prev
+
     def insert_before(self, node, val):
         new_node = DoublyLinkedList.Node(val, node.prev, node)
         node.prev.next = new_node
