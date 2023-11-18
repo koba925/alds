@@ -1,13 +1,14 @@
 def resolve():
     N = int(input())
-    A, B = zip(*[[int(e) for e in input().split()] for _ in range(N)])
+    A = [int(e) for e in input().split()]
 
-    ans = 0
-    for i in reversed(range(N)):
-        rem = (A[i] + ans) % B[i]
-        if rem != 0: ans += B[i] - rem
-    
-    print(ans)
+    s, g, d = 0, sum(A), float("inf")
+    for a in A[:-1]:
+        s += a
+        g -= a
+        d = min(d, abs(s - g))
+    print(d)
+
 
 # resolve()
 # exit()
@@ -28,23 +29,15 @@ class TestClass(unittest.TestCase):
         self.assertEqual(out, output)
 
     def test_入力例_1(self):
-        input = """3
-3 5
-2 7
-9 4"""
-        output = """7"""
+        input = """6
+1 2 3 4 5 6"""
+        output = """1"""
         self.assertIO(input, output)
 
     def test_入力例_2(self):
-        input = """7
-3 1
-4 1
-5 9
-2 6
-5 3
-5 8
-9 7"""
-        output = """22"""
+        input = """2
+10 -10"""
+        output = """20"""
         self.assertIO(input, output)
 
 
