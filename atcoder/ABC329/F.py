@@ -1,3 +1,5 @@
+# LL: 小さい方を大きい方に足すようにする。最悪時のオーダが変わることもある
+
 def resolve():
     N, Q = [int(e) for e in input().split()]
     C = [set([int(e)]) for e in input().split()]

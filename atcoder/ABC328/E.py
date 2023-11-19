@@ -1,3 +1,5 @@
+# LL: 全域木の確認はUnionFindで
+
 def resolve_TLE():
     import sys
     sys.setrecursionlimit(2000000)
