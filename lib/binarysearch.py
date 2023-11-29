@@ -46,3 +46,40 @@ def in_array(a, k) -> int:
 #     return bisect(-1, len(S), is_ok)
 #
 # print([binary_search(lambda n: i <= a[n], a) for i in range(5)])
+
+def leftmost(val, S):
+    length = len(S)
+    left, right = 0, length 
+    while left < right:
+        mid = (left + right) // 2
+        if val <= S[mid]:
+            right = mid
+        else:
+            left = mid + 1
+    return mid if S[mid] == val else -1
+
+import unittest
+class TestClass(unittest.TestCase):
+
+    def test_1(self):
+        self.assertEqual(leftmost(2, [3, 3, 5, 5, 7, 7]), -1)
+
+    def test_2(self):
+        self.assertEqual(leftmost(3, [3, 3, 5, 5, 7, 7]), 0)
+
+    def test_3(self):
+        self.assertEqual(leftmost(4, [3, 3, 5, 5, 7, 7]), -1)
+
+    def test_4(self):
+        self.assertEqual(leftmost(5, [3, 3, 5, 5, 7, 7]), 2)
+
+    def test_5(self):
+        self.assertEqual(leftmost(6, [3, 3, 5, 5, 7, 7]), -1)
+
+    def test_6(self):
+        self.assertEqual(leftmost(7, [3, 3, 5, 5, 7, 7]), 4)
+
+    def test_7(self):
+        self.assertEqual(leftmost(8, [3, 3, 5, 5, 7, 7]), -1)
+
+unittest.main()
