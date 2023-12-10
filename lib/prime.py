@@ -48,7 +48,7 @@ def primes_to(N):
     n = 2
     while n * n <= N:
         if is_prime[n]:
-            for m in range(2 * n, N + 1, n):
+            for m in range(n * n, N + 1, n):
                 is_prime[m] = False
         n += 1
     return [i for i, ip in enumerate(is_prime) if ip]
@@ -101,6 +101,25 @@ def divisors_of(N):
         i += 1
     return sorted(divisors)
 
+print(primes_to(100))
 
-A, B = [int(e) for e in input().split()]
-print(len(primes_between(A, B)))
+import unittest
+
+class TestPrimesTo(unittest.TestCase):
+
+    def test_primes_to_0(self):
+        self.assertEqual(primes_to(0), [])
+
+    def test_primes_to_1(self):
+        self.assertEqual(primes_to(1), [])
+
+    def test_primes_to_2(self):
+        self.assertEqual(primes_to(2), [2])
+
+    def test_primes_to_3(self):
+        self.assertEqual(primes_to(3), [2, 3])
+
+    def test_primes_to_100(self):
+        self.assertEqual(primes_to(100), [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97])
+
+unittest.main()
