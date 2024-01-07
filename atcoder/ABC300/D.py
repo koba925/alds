@@ -10,7 +10,7 @@ def primes_below(limit):
     return primes
 
 def aabcc(N):
-    prime_limit = int((N // (2 * 2 * 3)) ** .5 + 1)
+    prime_limit = 1000000
     primes = primes_below(prime_limit)
     nprime = len(primes)
 
