@@ -1,17 +1,19 @@
 def resolve():
-    N, K = [int(e) for e in input().split()]
+    N = int(input())
     S = input()
 
-    ans = []
-    qualified = 0
+    LRUD = {"L": (-1, 0), "R": (1, 0), "U": (0, 1), "D":(0, -1)}
+    x, y, visited = 0, 0, set()
+    visited.add((x, y))
     for s in S:
-        if s == "o" and qualified < K:
-            ans.append("o")
-            qualified += 1
-        else:
-            ans.append("x")
-    print("".join(ans))
-
+        x += LRUD[s][0]
+        y += LRUD[s][1]
+        if (x, y) in visited:
+            print("Yes")
+            break
+        visited.add((x, y))
+    else:
+        print("No")
 
 # resolve()
 # exit()
@@ -32,9 +34,15 @@ class TestClass(unittest.TestCase):
         self.assertEqual(out, output)
 
     def test_入力例_1(self):
-        input = """10 3
-oxxoxooxox"""
-        output = """oxxoxoxxxx"""
+        input = """5
+RLURU"""
+        output = """Yes"""
+        self.assertIO(input, output)
+
+    def test_入力例_2(self):
+        input = """20
+URDDLLUUURRRDDDDLLLL"""
+        output = """No"""
         self.assertIO(input, output)
 
 

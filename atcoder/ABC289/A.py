@@ -1,17 +1,12 @@
 def resolve():
-    N, K = [int(e) for e in input().split()]
-    S = input()
+    print(input().translate(str.maketrans({"0": "1", "1": "0"})))
 
-    ans = []
-    qualified = 0
-    for s in S:
-        if s == "o" and qualified < K:
-            ans.append("o")
-            qualified += 1
-        else:
-            ans.append("x")
-    print("".join(ans))
+def resolve():
+    print("".join("1" if c == "0" else "0" for c in input()))
 
+def resolve():
+    print("".join(map(lambda c: "1" if c == "0" else "0", input())))
+    
 
 # resolve()
 # exit()
@@ -32,9 +27,18 @@ class TestClass(unittest.TestCase):
         self.assertEqual(out, output)
 
     def test_入力例_1(self):
-        input = """10 3
-oxxoxooxox"""
-        output = """oxxoxoxxxx"""
+        input = """01"""
+        output = """10"""
+        self.assertIO(input, output)
+
+    def test_入力例_2(self):
+        input = """1011"""
+        output = """0100"""
+        self.assertIO(input, output)
+
+    def test_入力例_3(self):
+        input = """100100001"""
+        output = """011011110"""
         self.assertIO(input, output)
 
 
