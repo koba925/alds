@@ -1,4 +1,4 @@
-def resolve():
+def resolve_warshall_froyd_TLE():
     import collections as cl
 
     N, X, Y = [int(e) for e in input().split()]
@@ -23,8 +23,39 @@ def resolve():
 
     print(*[ans[n] // 2 for n in range(1, N)], sep="\n")
 
+def resolve():
+    def shortest(s, t, X, Y):
+        return min(
+            t - s,
+            abs(X - s) + 1 + abs(Y - t),
+            abs(Y - s) + 1 + abs(X - t)
+        )
+    
+    N, X, Y = [int(e) for e in input().split()]
+
+    ans = [0] * N
+    for s in range(1, N):
+        for t in range(s, N + 1):
+            ans[shortest(s, t, X, Y)] += 1
+    
+    print(*ans[1:], sep="\n")
+
+def resolve():
+    import collections as cl
+
+    N, X, Y = [int(e) for e in input().split()]
+    C = cl.Counter(min(
+            t - s,
+            abs(X - s) + 1 + abs(Y - t),
+            abs(Y - s) + 1 + abs(X - t)
+        ) for s in range(1, N) for t in range(s + 1, N + 1))    
+    print(*[C[k] for k in range(1, N)], sep="\n")
+
+
 # resolve()
 # exit()
+
+
 
 import sys
 from io import StringIO
