@@ -1,30 +1,36 @@
-def resolve():
-    def debug(*args, **kwargs): print(*args, **kwargs, file=sys.stderr)
-
-    import sys
-    sys.setrecursionlimit(2000000)
-
+def resolve_1():
     N = int(input())
     A = [int(e) for e in input().split()]
-    O = A[:]
 
-    max_sum = float("-inf")
-
-    last_plus = 0
     for i in range(N - 1):
         if A[i] < 0:
             A[i] *= -1
             A[i + 1] *= -1
-        else:
-            last_plus = i
     
     s = sum(abs(a) for a in A)
     if A[N - 1] < 0:
-        s -= min(abs(a) for a in A[last_plus:]) * 2
+        s -= min(abs(a) for a in A) * 2
     print(s)
+
+def resolve():
+    N = int(input())
+    A = [int(e) for e in input().split()]
+
+    memo = [[0, -float("inf")] for _ in range(N + 1)]
+    for i in range(N):
+        memo[i + 1][0] = max(memo[i][0] + A[i], memo[i][1] - A[i])
+        memo[i + 1][1] = max(memo[i][0] - A[i], memo[i][1] + A[i])
+
+    print(memo[N][0])
 
 # resolve()
 # exit()
+
+
+
+# resolve()
+# exit()
+
 
 import sys
 from io import StringIO
