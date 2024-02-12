@@ -1,4 +1,32 @@
-# 2_B.py Range Sum Query (RSQ)
+# TK: Range Sum Query (RSQ)
+# TK: セグメント木 Segment Tree
+
+
+#######################################################################
+# using ac-library-python https://github.com/not522/ac-library-python/
+# does not run on AOJ
+#######################################################################
+
+from atcoder.segtree import SegTree
+from operator import add
+
+MAXVAL = 2**31 - 1
+
+n, q = [int(e) for e in input().split()]
+
+A = SegTree(add, 0, n)
+
+for _ in range(q):
+    com, x, y = [int(e) for e in input().split()]
+    match com:
+        case 0: A.set(x - 1, A.get(x - 1) + y)
+        case 1: print(A.prod(x - 1, y))
+
+exit()
+
+#######################################################################
+# my code in the past
+#######################################################################
 
 from sys import stdin
 

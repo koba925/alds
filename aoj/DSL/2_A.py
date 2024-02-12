@@ -1,4 +1,31 @@
-# 2_A.py Range Minimum Query (RMQ)
+# TK: Range Minimum Query (RMQ)
+# TK: セグメント木 Segment Tree
+
+
+#######################################################################
+# using ac-library-python https://github.com/not522/ac-library-python/
+# does not run on AOJ
+#######################################################################
+
+from atcoder.segtree import SegTree
+
+MAXVAL = 2**31 - 1
+
+n, q = [int(e) for e in input().split()]
+
+A = SegTree(min, MAXVAL, n)
+
+for _ in range(q):
+    com, x, y = [int(e) for e in input().split()]
+    match com:
+        case 0: A.set(x, y)
+        case 1: print(A.prod(x, y + 1))
+
+exit()
+
+#######################################################################
+# my code in the past
+#######################################################################
 
 MAXVAL = 2**31 - 1
 

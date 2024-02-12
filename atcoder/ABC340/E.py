@@ -2,7 +2,7 @@
 # ソース：https://github.com/not522/ac-library-python/blob/master/atcoder/lazysegtree.py
 # サンプル：https://github.com/not522/ac-library-python/blob/master/example/lazysegtree_practice_l.py
 # 解説： https://betrue12.hateblo.jp/entry/2020/09/22/194541
-# TODO: AOJのDSLをやる
+# TODO: AOJのDSLをやる → やってみたけど理解不能
 
 def resolve_TLE():
     N, M = [int(e) for e in input().split()]
@@ -32,22 +32,35 @@ def resolve():
     A = [int(e) for e in input().split()]
     B = [int(e) for e in input().split()]
 
-    st = LazySegTree(lambda _1, _2: 0, 0, add, add, 0, A)
+    # 総積を求めるときの写像
+    def op(data1, data2): return data1 + data2
+    # opの単位元 演算しても値が変わらない 配列の初期値にも使う
+    e = 0
+    # 操作時に上のlazyを下のdataに作用させる写像
+    def mapping(lazy_upper, data_lower): return lazy_upper + data_lower
+    # 操作時に上のlazyを下のlazyに作用させる写像
+    def composition(lazy_upper, lazy_lower): return lazy_upper + lazy_lower
+    # mappingが恒等写像になる値
+    id = 0
+    # 初期配列 整数nを指定すると初期値がe、長さがnの配列になる
+    v = A
+    # 遅延セグメント木の構築
+    lst = LazySegTree(op, e, mapping, composition, id, v)
 
     for b in B:
-        a = st.get(b)
-        st.set(b, 0)
+        a = lst.get(b)
+        lst.set(b, 0)
         r, q = divmod(a, N)
         if b + q + 1 < N:
-            st.apply(0, b + 1, r)
-            st.apply(b + 1, b + q + 1, r + 1)
-            st.apply(b + q + 1, N, r)
+            lst.apply(0, b + 1, r)
+            lst.apply(b + 1, b + q + 1, r + 1)
+            lst.apply(b + q + 1, N, r)
         else:
-            st.apply(0, (b + q + 1) % N, r + 1)
-            st.apply((b + q + 1) % N, b + 1, r)
-            st.apply(b + 1, N, r + 1)
+            lst.apply(0, (b + q + 1) % N, r + 1)
+            lst.apply((b + q + 1) % N, b + 1, r)
+            lst.apply(b + 1, N, r + 1)
 
-    print(*[st.get(i) for i in range(N)])
+    print(*[lst.get(i) for i in range(N)])
 
 # resolve()
 # exit()
