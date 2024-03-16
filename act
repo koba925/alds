@@ -1,0 +1,2 @@
+cd atcoder/$1
+python -m unittest $2.py
